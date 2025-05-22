@@ -26,21 +26,48 @@ export default function TabLayout() {
           default: {},
         }),
       }}>
-      <Tabs.Screen
+     <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          // title: 'Home',
+ 
+          tabBarStyle: { display: 'none'},
+          tabBarButton: () => null,
+        }}
+      />
+      <Tabs.Screen
+        name="registro"
+        options={{
+          title: 'registro',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+           tabBarStyle: { display: 'none' },
+          }}
+        />
+          <Tabs.Screen
+            name="cadastrar"
+            options={{
+              title: 'Adicionar Turmas',
+              tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+            }}
+          />
+        
+      <Tabs.Screen
+        name="home"
+        options={{
+          title: 'Inicio',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
+
       <Tabs.Screen
-        name="explore"
+        name="perfil"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Perfil',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
     </Tabs>
+    
     
   );
 }
