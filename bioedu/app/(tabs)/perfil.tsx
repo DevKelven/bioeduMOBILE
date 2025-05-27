@@ -1,9 +1,11 @@
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ProfileScreen: React.FC = () => {
+    const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
       {/* Header */}
@@ -37,6 +39,12 @@ const ProfileScreen: React.FC = () => {
       <View style={styles.statusContainer}>
         <Text style={styles.statusText}>Não finalizado!!!</Text>
       </View>
+
+      <TouchableOpacity style={[styles.saida]}>       
+        <Text onPress={() => router.push('/')} style={[styles.saidaText]}>Sair</Text> 
+      </TouchableOpacity>
+
+     
     </SafeAreaView>
   );
 };
@@ -111,4 +119,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
+  saida:{
+    flex:0,
+    borderWidth:2,
+    borderColor:"red",
+    padding:10,
+    backgroundColor:"red",
+    borderRadius:40,
+    width: 120,
+    position: "absolute",
+    bottom:30,
+    left:130,
+    alignContent:"center",
+    alignItems:"center",
+    justifyContent:"center"
+  },
+  saidaText:{
+    textAlign:"center",
+    color:"white",
+    fontSize:25,
+    fontWeight:"bold"
+  }
 });

@@ -23,41 +23,29 @@ export default function TabLayout() {
             // Use a transparent background on iOS to show the blur effect
             position: 'absolute',
           },
-          default: {},
+          default: {
+          },
         }),
       }}>
-     <Tabs.Screen
-        name="index"
-        options={{
-          // title: 'Home',
- 
-          tabBarStyle: { display: 'none'},
-          tabBarButton: () => null,
-        }}
-      />
-      <Tabs.Screen
-        name="registro"
-        options={{
-          title: 'registro',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-           tabBarStyle: { display: 'none' },
-          }}
-        />
-          <Tabs.Screen
-            name="cadastrar"
-            options={{
-              title: 'Adicionar Turmas',
-              tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-            }}
-          />
+          
         
       <Tabs.Screen
         name="home"
         options={{
           title: 'Inicio',
+          headerTitle: "",
+          headerTransparent: true, 
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
+
+    <Tabs.Screen
+                name="cadastrar"
+                options={{
+                  title: 'Adicionar Turmas',
+                  tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+                }}
+              />
 
       <Tabs.Screen
         name="perfil"

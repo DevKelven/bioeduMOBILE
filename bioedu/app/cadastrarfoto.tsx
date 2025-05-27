@@ -1,9 +1,7 @@
-import { router } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-
-export default function CadastrarturmaScreen() {
+export default function CadastrarFotoScreen() {
   return (
     <View style={styles.container}>
    
@@ -12,13 +10,17 @@ export default function CadastrarturmaScreen() {
       <Text style={{color:"white", fontSize:34, fontWeight:"bold", textAlign:"center"}}>Cadastrar Turmas</Text>
       <Text style={{color:"white", fontSize:20,textAlign:"center"}}>Dê um nome para sua turma</Text>
 
-      <View style={styles.inputContainer}>
-        <TextInput style={styles.input}/>
-      </View>
+      
     </View>
     <View>
-        <TouchableOpacity style={styles.botao} onPress={() => router.push('../cadastrarBanco')}>
-          <Text style={{textAlign:'center', fontWeight:'bold'}}>Continuar</Text>   
+          <Image
+                  source={require('../assets/images/camera.png')}
+                  style={styles.image}
+                />
+      </View>
+    <View>
+        <TouchableOpacity style={styles.botao}>
+          <Text style={{textAlign:'center', fontWeight:'bold'}}>Tirar foto</Text>   
         </TouchableOpacity>
     </View>
 
@@ -58,6 +60,10 @@ const styles = StyleSheet.create({
     textAlign:'center',
     color: '#002f6c',
     borderRadius:40,
-
+  },
+   image: {
+    height: 120,
+    width:90,
+    margin:50,
   },
 });

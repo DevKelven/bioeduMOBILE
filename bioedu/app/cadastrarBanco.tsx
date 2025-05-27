@@ -2,23 +2,22 @@ import { router } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-
-export default function CadastrarturmaScreen() {
+export default function CadastrarBancoScreen() {
   return (
     <View style={styles.container}>
    
 
     <View style={styles.texto}>
       <Text style={{color:"white", fontSize:34, fontWeight:"bold", textAlign:"center"}}>Cadastrar Turmas</Text>
-      <Text style={{color:"white", fontSize:20,textAlign:"center"}}>Dê um nome para sua turma</Text>
+      <Text style={{color:"white", fontSize:20,textAlign:"center"}}>Adicione o link para o banco de dados da turma:</Text>
 
       <View style={styles.inputContainer}>
         <TextInput style={styles.input}/>
       </View>
     </View>
     <View>
-        <TouchableOpacity style={styles.botao} onPress={() => router.push('../cadastrarBanco')}>
-          <Text style={{textAlign:'center', fontWeight:'bold'}}>Continuar</Text>   
+        <TouchableOpacity style={styles.botao}>
+          <Text style={{textAlign:'center', fontWeight:'bold'}} onPress={() => router.push('/cadastrarfoto')}>Continuar</Text>   
         </TouchableOpacity>
     </View>
 

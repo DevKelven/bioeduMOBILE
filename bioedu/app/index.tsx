@@ -1,60 +1,48 @@
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-export default function cadastro() {
+export default function LoginScreen() {
+  const router = useRouter();
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <Image
-          source={require('../../assets/images/logo.png')}
-          style={styles.image}
-          resizeMode="contain"
+    <View style={styles.container}>
+      <Image
+        source={require('../assets/images/logo.png')}
+        style={styles.image}
+        resizeMode="contain"
+      />
+
+
+
+      <View style={styles.inputContainer}>
+  
+        <TextInput
+          placeholder="Digite seu Usuario"
+          style={styles.input}
         />
-
-
-
-        <View style={styles.inputContainer}>
-    
-          <TextInput
-            placeholder="Nome Completo"
-            style={styles.input}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Digite seu Email"
-            style={styles.input}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Digite sua senha"
-            secureTextEntry
-            style={styles.input}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Digite sua Senha novamente"
-            secureTextEntry
-            style={styles.input}
-          />
-        </View>
-
-
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginButtonText}>Cadastrar</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.signupText}>
-          Já tem uma conta? <Link href={'/'} style={styles.signupLink}>Entre aqui</Link>
-        </Text>
       </View>
-    </ScrollView>
+
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder="Senha"
+          secureTextEntry
+          style={styles.input}
+        />
+      </View>
+      <View>
+      <Link href={'/home'} style={styles.loginButton}>
+      <TouchableOpacity onPress={() => router.push('/home')}>
+        
+          <Text style={styles.loginButtonText}>Login</Text>
+        
+      </TouchableOpacity>
+      </Link>
+      <Text style={styles.signupText}>
+        Ainda não possui nossos serviços? 
+      </Text>
+      <Link href={"https://github.com/DevKelven/bioeduMOBILE"} onPress={() => router.push('https://github.com/DevKelven/bioeduMOBILE')} style={styles.signupLink}>Clique aqui</Link>
+      </View>
+    </View>
   );
 }
 
@@ -64,6 +52,7 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: '#002A62',
     justifyContent: 'center',
+    
   },
   image: {
     height: 190,
@@ -114,6 +103,7 @@ const styles = StyleSheet.create({
   loginButtonText: {
     color: '#002A62',
     fontWeight: 'bold',
+    paddingLeft:156
   },
   orText: {
     textAlign: 'center',
@@ -149,4 +139,3 @@ const styles = StyleSheet.create({
  
   },
 });
-

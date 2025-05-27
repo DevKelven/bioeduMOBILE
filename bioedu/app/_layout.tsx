@@ -20,8 +20,10 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+        <Stack.Screen name="index" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
+        <Stack.Screen name="cadastrarBanco" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
+        <Stack.Screen name="cadastrarfoto" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerTitle: "",headerTransparent: true, headerShown: false}} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
