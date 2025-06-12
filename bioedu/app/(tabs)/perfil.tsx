@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -10,19 +10,16 @@ const ProfileScreen: React.FC = () => {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        {/* <Image
-          source={require('./assets/logo.png')} // Substitua pela sua logo
-          style={styles.logo}
-          resizeMode="contain"
-        /> */}
-        <Text style={styles.greeting}>Olá, Bea!</Text>
-        {/* <Icon name="user-circle" size={30} color="#fff" /> */}
+        <Image source={require('../../assets/images/logo_notext.png')} style={styles.logo} resizeMode="contain" />
       </View>
 
       {/* Avatar e Nome */}
+    <View style={styles.conteudo}>
       <View style={styles.profileSection}>
         <View style={styles.avatarCircle}>
           {/* <Icon name="user" size={50} color="#000" /> */}
+
+
           <TouchableOpacity style={styles.editIcon}>
             {/* <Icon name="edit" size={15} color="#000" /> */}
           </TouchableOpacity>
@@ -34,7 +31,7 @@ const ProfileScreen: React.FC = () => {
       <View style={styles.tab}>
         <Text style={styles.tabText}>Informações pessoais</Text>
       </View>
-
+    </View>
       {/* Mensagem de status */}
       <View style={styles.statusContainer}>
         <Text style={styles.statusText}>Não finalizado!!!</Text>
@@ -62,10 +59,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 16,
-  },
-  logo: {
-    width: 30,
-    height: 30,
+    width:400,
+    height:100,
+    position: 'absolute',
+    top:0,
   },
   greeting: {
     color: '#fff',
@@ -139,5 +136,7 @@ const styles = StyleSheet.create({
     color:"white",
     fontSize:25,
     fontWeight:"bold"
-  }
+  },
+   logo: { width: 50, height: 50, marginTop:30, },
+   conteudo:{marginTop:50}
 });
