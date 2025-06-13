@@ -1,43 +1,56 @@
 import { router } from 'expo-router';
-import React from 'react';
+import React, { useState } from 'react';
 import {
+  Button,
   Image,
+  Modal,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 
 export default function historicoData() {
-  const datas = [
-    '18/03/2025',
-    '25/03/2025',
-    '01/04/2025',
-    '08/04/2025',
-    '15/04/2025',
-    '22/04/2025'
+  const [modalVisible, setModalVisible] = useState(false);
+  const turma = [
+    'Kelven',
+    'Beatriz',
+    'Guilherme',
+    'Fellipe',
   ];
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        {/* <Image source={require('../assets/image1.png')} style={styles.logo} resizeMode="contain" /> */}
-        <View style={styles.userInfo}>
-          {/* <Image source={require('../assets/941beafc-bd53-4c0c-9c3c-9d51b8418cec.png')} style={styles.userIcon} /> */}
-        </View>
-      </View>
 
     <View style={{marginTop:50}}>
-      <Text style={styles.title}>Históricos</Text>
+      <Text style={styles.title}>Sistemas para Internet 4°</Text>
 
       <ScrollView contentContainerStyle={styles.content}>
-        {datas.map((data, index) => (
+        {turma.map((turma, index) => (
           <View key={index} style={styles.item}>
-            <Text style={styles.itemText} onPress={() => router.push('/alunos')}>{data}</Text>
+              <View style={styles.icons}>
+              <Image source={require('../assets/images/user.png')} style={styles.addIcon} />
+            </View>
+            <Text style={styles.itemText}>{turma}</Text>
             <View style={styles.icons}>
-              <Image source={require('../assets/images/impressora.png')} style={styles.addIcon} />
-              <Image source={require('../assets/images/download.png')} style={styles.addIcon} />
+
+                <TouchableOpacity style={styles.falta}> </TouchableOpacity>
+
+              <TouchableOpacity onPress={() => setModalVisible(true)}>
+               <Image source={require('../assets/images/editar.png')} style={styles.addIcon} />
+                 <Modal visible={modalVisible} onRequestClose={() => setModalVisible(false)}>
+                      <View style={styles.modal}>
+                        <Text>Teste</Text>
+                      <TouchableOpacity style={styles.botaoModal} onPress={() => setModalVisible(false)}>
+                          <Text style={{color:'white',fontWeight:'bold',}}>
+                            Fechar
+                          </Text>
+                      </TouchableOpacity>
+                      <Button title="Fechar" onPress={() => setModalVisible(false)} />
+                    </View>
+                  </Modal>
+            </TouchableOpacity>
             </View>
           </View>
         ))}
@@ -114,5 +127,32 @@ const styles = StyleSheet.create({
     color:"white",
     fontSize:25,
     fontWeight:"bold"
+  },
+  falta:{
+      backgroundColor:'red',
+      width:20,
+      height:20,
+      borderWidth:1,
+      borderRadius:80,
+      borderColor:'red',
+  },
+  presença:{
+      backgroundColor:'green',
+      width:20,
+      height:20,
+      borderWidth:1,
+      borderRadius:80,
+      borderColor:'green',
+  },
+  modal:{
+      flex:1,
+      justifyContent:'center',
+      alignItems:'center',
+  },
+  botaoModal:{
+    padding:15,
+    paddingHorizontal:25,
+    backgroundColor:'#002f6c',
+
   }
 });

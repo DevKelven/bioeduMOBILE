@@ -17,7 +17,7 @@ export default function CadastrarBancoScreen() {
     </View>
     <View>
         <TouchableOpacity style={styles.botao}>
-          <Text style={{textAlign:'center', fontWeight:'bold'}} onPress={() => router.push('/cadastrarfoto')}>Continuar</Text>   
+          <Text style={{textAlign:'center', fontWeight:'bold'}} onPress={() => router.push('/')}>Continuar</Text>   
         </TouchableOpacity>
     </View>
 

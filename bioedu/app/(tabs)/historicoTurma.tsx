@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     height:100,
     position: 'absolute',
     top:0,
-
   },
   userInfo: { flexDirection: 'row', alignItems: 'center' },
   greeting: { color: '#fff', fontSize: 16, marginRight: 8 },
