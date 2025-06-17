@@ -23,6 +23,8 @@ export default function historicoData() {
     <View style={styles.container}>
       <View style={styles.header}>
         {/* <Image source={require('../assets/image1.png')} style={styles.logo} resizeMode="contain" /> */}
+        <Image source={require('../assets/images/logo_notext.png')} style={styles.logo} resizeMode="contain" />
+        
         <View style={styles.userInfo}>
           {/* <Image source={require('../assets/941beafc-bd53-4c0c-9c3c-9d51b8418cec.png')} style={styles.userIcon} /> */}
         </View>
@@ -65,7 +67,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     paddingVertical:25,
-    marginTop:40
+    width:'100%',
+    height:100,
+    
   },
   logo: { width: 40, height: 40 },
   userInfo: { flexDirection: 'row', alignItems: 'center' },

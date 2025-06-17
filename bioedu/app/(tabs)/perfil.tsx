@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 16,
-    width:400,
+    width:'100%',
     height:100,
     position: 'absolute',
     top:0,

@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#002f6c',
     justifyContent: 'space-between',
     padding: 16,
-    width:400,
+    width:'100%',
     height:100,
     position: 'absolute',
     top:0,
