@@ -1,9 +1,45 @@
 import { Link, useRouter } from 'expo-router';
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function LoginScreen() {
   const router = useRouter();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleLogin = async () => {
+    setErrorMessage('');
+
+    if (!username || !password) {
+      setErrorMessage('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://10.0.2.2/api_bioedu/login.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        console.log('Login bem-sucedido!', data.message);
+        router.push('/home');
+      } else {
+        console.log('Login falhou:', data.message);
+        setErrorMessage(data.message || 'Usuário ou senha incorretos.');
+      }
+    } catch (error) {
+      console.error('Erro ao conectar ao servidor:', error);
+      setErrorMessage('Erro ao conectar. Tente novamente mais tarde.');
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -12,13 +48,13 @@ export default function LoginScreen() {
         resizeMode="contain"
       />
 
-
-
       <View style={styles.inputContainer}>
-  
         <TextInput
           placeholder="Digite seu Usuario"
           style={styles.input}
+          value={username}
+          onChangeText={setUsername}
+          autoCapitalize="none"
         />
       </View>
 
@@ -27,21 +63,23 @@ export default function LoginScreen() {
           placeholder="Senha"
           secureTextEntry
           style={styles.input}
+          value={password}
+          onChangeText={setPassword}
         />
       </View>
-      <View>
-      <Link href={'/home'} style={styles.loginButton}>
-      <TouchableOpacity onPress={() => router.push('/home')}>
-        
-          <Text style={styles.loginButtonText}>Login</Text>
-        
+
+      {errorMessage ? (
+        <Text style={styles.errorMessage}>{errorMessage}</Text>
+      ) : null}
+
+      <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
+        <Text style={styles.loginButtonText}>Login</Text>
       </TouchableOpacity>
-      </Link>
+
       <Text style={styles.signupText}>
-        Ainda não possui nossos serviços? 
+        Ainda não possui nossos serviços?
       </Text>
-      <Link href={"https://github.com/DevKelven/bioeduMOBILE"} onPress={() => router.push('https://github.com/DevKelven/bioeduMOBILE')} style={styles.signupLink}>Clique aqui</Link>
-      </View>
+      <Link href={"https://github.com/DevKelven/bioeduMOBILE"} style={styles.signupLink}>Clique aqui</Link>
     </View>
   );
 }
@@ -52,22 +90,10 @@ const styles = StyleSheet.create({
     padding: 24,
     backgroundColor: '#002A62',
     justifyContent: 'center',
-    
   },
   image: {
     height: 190,
     alignSelf: 'center',
-    marginBottom: 24,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: '700',
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-  subtitle: {
-    textAlign: 'center',
-    color: '#888',
     marginBottom: 24,
   },
   inputContainer: {
@@ -78,20 +104,11 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    marginBottom: 52,
+    marginBottom: 20,
     backgroundColor: 'white',
-  },
-  icon: {
-    marginRight: 10,
   },
   input: {
     flex: 1,
-  },
-  forgot: {
-    textAlign: 'right',
-    color: '#888',
-    marginBottom: 24,
-    marginRight:10,
   },
   loginButton: {
     backgroundColor: 'white',
@@ -103,29 +120,13 @@ const styles = StyleSheet.create({
   loginButtonText: {
     color: '#002A62',
     fontWeight: 'bold',
-    paddingLeft:156
   },
-  orText: {
+  errorMessage: {
+    color: 'red',
     textAlign: 'center',
-    color: '#aaa',
-    marginBottom: 16,
-  },
-  socialContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 20,
-  },
-  socialButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 25,
-  },
-  socialText: {
-    color: '#fff',
-    marginLeft: 8,
-    fontWeight: '600',
+    marginBottom: 10,
+    fontSize: 14,
+    fontWeight: 'bold',
   },
   signupText: {
     textAlign: 'center',
@@ -135,7 +136,6 @@ const styles = StyleSheet.create({
   signupLink: {
     color: 'white',
     fontWeight: '600',
-    textAlign:"center",
- 
+    textAlign: "center",
   },
 });
