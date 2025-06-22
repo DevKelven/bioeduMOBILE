@@ -22,6 +22,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="index" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
         <Stack.Screen name="cadastrarBanco" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
+        <Stack.Screen name="cadastrar" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
         <Stack.Screen name="cadastrarfoto" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
         <Stack.Screen name="historicoData" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
         <Stack.Screen name="alunos" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />

@@ -1,7 +1,6 @@
 import { router } from 'expo-router';
 import React from 'react';
 import {
-  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -23,7 +22,7 @@ export default function historicoTurma() {
       <View style={styles.header}>
         
         <View style={styles.userInfo}>
-         <Image source={require('../../assets/images/logo_notext.png')} style={styles.logo} resizeMode="contain" />
+         {/* <Image source={require('../../assets/images/logo_notext.png')} style={styles.logo} resizeMode="contain" /> */}
         
         </View>
       </View>

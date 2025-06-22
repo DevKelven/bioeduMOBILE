@@ -54,15 +54,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   header: {
+    flex:1/10,
     backgroundColor: '#002f6c',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: 16,
-    width:400,
-    height:100,
-    position: 'absolute',
-    top:0,
+    width:'100%',
+    position:'absolute'
   },
   greeting: {
     color: '#fff',
@@ -138,5 +135,7 @@ const styles = StyleSheet.create({
     fontWeight:"bold"
   },
    logo: { width: 50, height: 50, marginTop:30, },
-   conteudo:{marginTop:50}
+  conteudo:{
+    marginTop:40
+  }
 });

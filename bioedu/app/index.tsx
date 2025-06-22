@@ -17,7 +17,7 @@ export default function LoginScreen() {
     }
 
     try {
-      const response = await fetch('http://10.0.2.2/api_bioedu/login.php', {
+      const response = await fetch('http://192.168.0.6/api_bioedu/login.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

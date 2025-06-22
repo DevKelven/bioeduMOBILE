@@ -37,7 +37,6 @@ export default function historicoData() {
             <Text style={styles.itemText} onPress={() => router.push('/alunos')}>{data}</Text>
             <View style={styles.icons}>
               <Image source={require('../assets/images/impressora.png')} style={styles.addIcon} />
-              <Image source={require('../assets/images/download.png')} style={styles.addIcon} />
             </View>
           </View>
         ))}
@@ -46,7 +45,7 @@ export default function historicoData() {
       </View>
 
 
-         <TouchableOpacity style={[styles.saida]} onPress={() => router.push('/historicoTurma')}>       
+         <TouchableOpacity style={[styles.saida]} onPress={() => router.push('/home')}>       
                 <Text  style={[styles.saidaText]}>Voltar</Text> 
               </TouchableOpacity>
         
@@ -63,9 +62,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 16,
-    paddingVertical:25,
-    marginTop:40
+    width:'100%',
   },
   logo: { width: 40, height: 40 },
   userInfo: { flexDirection: 'row', alignItems: 'center' },

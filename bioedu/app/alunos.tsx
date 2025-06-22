@@ -59,7 +59,7 @@ export default function historicoData() {
       </View>
 
 
-         <TouchableOpacity style={[styles.saida]} onPress={() => router.push('/historicoTurma')}>       
+         <TouchableOpacity style={[styles.saida]} onPress={() => router.push('/historicoData')}>       
                 <Text  style={[styles.saidaText]}>Voltar</Text> 
               </TouchableOpacity>
         
