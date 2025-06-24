@@ -22,7 +22,7 @@ export default function historicoData() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        {/* <Image source={require('../assets/image1.png')} style={styles.logo} resizeMode="contain" /> */}
+              <Image source={require('../assets/images/logo_notext.png')} style={styles.logo} resizeMode="contain" />
         <View style={styles.userInfo}>
           {/* <Image source={require('../assets/941beafc-bd53-4c0c-9c3c-9d51b8418cec.png')} style={styles.userIcon} /> */}
         </View>
@@ -58,13 +58,17 @@ export default function historicoData() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff' },
  header: {
+    flex: 1/5,
     backgroundColor: '#002f6c',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    width:'100%',
+    width: '100%',
   },
-  logo: { width: 40, height: 40 },
+  logo: {
+    width: 50,
+    height: 50,
+    marginTop:30,
+  },
   userInfo: { flexDirection: 'row', alignItems: 'center' },
   greeting: { color: '#fff', fontSize: 16, marginRight: 8 },
   userIcon: { width: 28, height: 28 },

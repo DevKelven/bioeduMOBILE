@@ -25,6 +25,7 @@ export default function RootLayout() {
         <Stack.Screen name="cadastrar" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
         <Stack.Screen name="cadastrarfoto" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
         <Stack.Screen name="historicoData" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
+        <Stack.Screen name="register" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
         <Stack.Screen name="alunos" options={{headerTitle: "",headerTransparent: true, headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerTitle: "",headerTransparent: true, headerShown: false}} />
       </Stack>

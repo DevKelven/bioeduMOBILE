@@ -1,45 +1,58 @@
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [dob, setDob] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     setErrorMessage('');
 
-    if (!username || !password) {
+    if (!username || !password || !email || !fullName || !dob) {
       setErrorMessage('Por favor, preencha todos os campos.');
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage('Por favor, insira um e-mail válido.');
+      return;
+    }
+
+    const dobRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dobRegex.test(dob)) {
+      setErrorMessage('Formato de data de nascimento inválido. Use AAAA-MM-DD.');
+      return;
+    }
+
     try {
-      const response = await fetch('http://10.0.0.129/api_bioedu/login.php', {
+      const response = await fetch('http://10.0.0.129/api_bioedu/registro.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({
+          username: username,
+          password: password,
+          email: email,
+          nome_completo: fullName,
+          data_nascimento: dob,
+        }),
       });
 
       const data = await response.json();
 
       if (data.success) {
-        console.log('Login bem-sucedido!', data.message);
-        router.push({
-           pathname: '/perfil', // Mantenha assim
-           params: { username: data.username,
-            email: data.email,             // Adicione esta linha
-            nome_completo: data.nome_completo, // Adicione esta linha
-            data_nascimento: data.data_nascimento, // Adicione esta linha
-          }
-      });
+        Alert.alert('Sucesso!', data.message);
+        router.push('/');
       } else {
-        console.log('Login falhou:', data.message);
-        setErrorMessage(data.message || 'Usuário ou senha incorretos.');
+        setErrorMessage(data.message || 'Erro ao registrar. Tente novamente.');
       }
     } catch (error) {
       console.error('Erro ao conectar ao servidor:', error);
@@ -57,11 +70,41 @@ export default function LoginScreen() {
 
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder="Digite seu Usuario"
+          placeholder="Nome de Usuário"
           style={styles.input}
           value={username}
           onChangeText={setUsername}
           autoCapitalize="none"
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder="E-mail"
+          style={styles.input}
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder="Nome Completo"
+          style={styles.input}
+          value={fullName}
+          onChangeText={setFullName}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder="Data de Nascimento (AAAA-MM-DD)"
+          style={styles.input}
+          value={dob}
+          onChangeText={setDob}
+          keyboardType="numeric"
         />
       </View>
 
@@ -79,14 +122,15 @@ export default function LoginScreen() {
         <Text style={styles.errorMessage}>{errorMessage}</Text>
       ) : null}
 
-      <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
-        <Text style={styles.loginButtonText}>Login</Text>
+      <TouchableOpacity onPress={handleRegister} style={styles.registerButton}>
+        <Text style={styles.registerButtonText}>Registrar</Text>
       </TouchableOpacity>
 
       <Text style={styles.signupText}>
-        Ainda não possui nossos serviços?
+        Já possui uma conta?
       </Text>
-     <Text style={styles.signupLink} onPress={() => router.push('/register')}>Clique aqui</Text>
+      {/* CORREÇÃO AQUI: Envolva "Fazer Login" em <Text> */}
+      <Link href={"/"} style={styles.signupLink}><Text>Fazer Login</Text></Link>
     </View>
   );
 }
@@ -117,14 +161,14 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
   },
-  loginButton: {
+  registerButton: {
     backgroundColor: 'white',
     paddingVertical: 14,
     borderRadius: 30,
     alignItems: 'center',
     marginBottom: 20,
   },
-  loginButtonText: {
+  registerButtonText: {
     color: '#002A62',
     fontWeight: 'bold',
   },

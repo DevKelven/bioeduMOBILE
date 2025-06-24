@@ -41,8 +41,7 @@ export default function TabLayout() {
         }}
       />
 
-   
-         <Tabs.Screen
+      <Tabs.Screen
         name="perfil"
         options={{
           title: 'Perfil',
