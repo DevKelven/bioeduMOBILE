@@ -50,7 +50,7 @@ export default function LoginScreen() {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../assets/images/logo.png')}
+        source={require('../assets/images/biodocentes2.png')}
         style={styles.image}
         resizeMode="contain"
       />

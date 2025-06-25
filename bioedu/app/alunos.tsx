@@ -1,3 +1,4 @@
+// import CheckBox from '@react-native-community/checkbox';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -27,23 +28,26 @@ const App = () => {
     <View style={styles.itemContainer}>
       <Text style={styles.icon}>👤</Text>
       <Text style={styles.nome}>{item.nome}</Text>
-      {/* <CheckBox
-        value={item.presente}
-        onValueChange={() => togglePresenca(item.id)}
-        tintColors={{ true: '#0f0', false: '#ccc' }}
-      /> */}
+      {/* Botão de Presença/Falta */}
+      <TouchableOpacity
+        style={[
+          styles.presencaButton,
+          { backgroundColor: item.presente ? '#4CAF50' : '#F44336' }, 
+        ]}
+        onPress={() => togglePresenca(item.id)}
+      >
+        <Text style={styles.presencaButtonText}>
+          {item.presente ? 'P' : 'F'} 
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 
   return (
-
-    
-
     <View style={styles.container}>
-
-            <View style={styles.header}>
-              <Image source={require('../assets/images/logo_notext.png')} style={styles.logo} resizeMode="contain" />
-            </View>
+      <View style={styles.header}>
+        <Image source={require('../assets/images/logo_notext.png')} style={styles.logo} resizeMode="contain" />
+      </View>
 
       <Text style={styles.titulo}>Sistemas para Internet{'\n'}4°</Text>
       <FlatList
@@ -51,10 +55,10 @@ const App = () => {
         keyExtractor={item => item.id}
         renderItem={renderItem}
       />
-     
-              <TouchableOpacity style={[styles.saida]} onPress={() => router.push('/home')}>       
-                     <Text  style={[styles.saidaText]}>Voltar</Text> 
-                   </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.saida]} onPress={() => router.push('/historicoData')}>
+        <Text style={[styles.saidaText]}>Voltar</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -63,15 +67,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingHorizontal: 20, 
+    paddingTop: 80, 
   },
   titulo: {
     fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#002147',
-    marginBottom: 24,
-    marginTop:50
-  },
+    marginBottom: 40,
+    marginTop:40,
+    },
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -89,10 +95,22 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#333',
   },
+  presencaButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20, 
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+  presencaButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
   botaoContainer: {
     marginTop: 24,
     alignItems: 'center',
-  
   },
   botao: {
     backgroundColor: '#002f6c',
@@ -101,41 +119,48 @@ const styles = StyleSheet.create({
     paddingVertical: 26,
     borderRadius: 32,
     fontSize: 18,
-    position:'relative',
-    bottom:0,
+    position: 'relative',
+    bottom: 0,
+    alignItems:'center',
+    justifyContent:'center',
+    flex:1,
   },
-   header: {
-    flex: 1/5,
+  header: {
     backgroundColor: '#002f6c',
     flexDirection: 'row',
     alignItems: 'center',
-    width: '100%',
+    width: 600,
+    position: 'absolute', 
+    top: 0,
+    left: 0,
+    paddingTop: 30, 
   },
-    logo: {
+  logo: {
     width: 50,
     height: 50,
-    marginTop:30,
+    marginLeft: 10, 
   },
-    saidaText:{
-    textAlign:"center",
-    color:"white",
-    fontSize:25,
-    fontWeight:"bold"
+  saidaText: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 25,
+    fontWeight: "bold"
   },
-   saida:{
-    flex:0,
-    borderWidth:2,
-    borderColor:"#002f6c",
-    padding:10,
-    backgroundColor:"#002f6c",
-    borderRadius:40,
+  saida: {
+    borderWidth: 2,
+    borderColor: "#002f6c",
+    padding: 10,
+    backgroundColor: "#002f6c",
+    borderRadius: 40,
     width: 120,
     position: "absolute",
-    bottom:30,
-    left:130,
-    alignContent:"center",
-    alignItems:"center",
-    justifyContent:"center"
+    bottom: 30,
+    left: '50%', 
+    transform: [{ translateX: -40 }], 
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex: 1, 
   },
 });
 
